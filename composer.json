@@ -1,0 +1,29 @@
+{
+    "name": "beedelivery/laravel-itpay",
+    "description": "Package for integration with ItPay.",
+    "keywords": ["itpay", "laravel", "bank"],
+    "type": "library",
+    "require": {
+        "php": "^7.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bee Delivery",
+            "email": "suporte@beedelivery.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "BeeDelivery\\ItPay\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BeeDelivery\\ItPay\\ItPayServiceProvider"
+            ]
+        }
+    }
+}
