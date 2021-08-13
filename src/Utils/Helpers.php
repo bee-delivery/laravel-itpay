@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 trait Helpers
 {
     /*
-     * Valida dados para criação de um novo cliente.
+     * Validate data for creating a new customer.
      *
      * @param array $data
      * @return void
@@ -37,7 +37,7 @@ trait Helpers
     }
 
     /*
-     * Valida dados para criação de um cashin.
+     * Validate data for creating a cashin transaction.
      *
      * @param array $data
      * @return void
@@ -58,7 +58,7 @@ trait Helpers
     }
 
     /*
-     * Valida dados para criação de um cashout.
+     * Validate data for creating a cashout transaction.
      *
      * @param array $data
      * @return void
@@ -71,6 +71,23 @@ trait Helpers
             'amount' => 'required|numeric',
             'description' => 'required|string',
             'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
+     * Validate data to get a customer.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetCustomerData($data)
+    {
+        $validator = Validator::make($data, [
+            'customerId' => 'required|string',
         ]);
 
         if ($validator->fails()) {

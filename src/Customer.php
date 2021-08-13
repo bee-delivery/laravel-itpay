@@ -22,17 +22,41 @@ class Customer
     }
 
     /*
-     * Create new customer.
+     * Create a new customer.
      *
      * @param array $params
      * @return array
      */
-    public function createCustomer($params)
+    public function create($params)
     {
         try {
             $this->validateCreateCustomerData($params);
 
             $response = $this->http->post('/customers', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
+     * Get a customer.
+     *
+     * @param string $customerId
+     * @return array
+     */
+    public function get($customerId)
+    {
+        try {
+            $this->validateGetCustomerData([
+                'customerId' => $customerId
+            ]);
+
+            $response = $this->http->get('/customers/' . $customerId);
 
             return $response;
         } catch (\Exception $e) {
