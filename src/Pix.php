@@ -12,7 +12,7 @@ class Pix
     protected $http;
 
     /*
-     * Cria uma nova instância de Connection.
+     * Create new Connection instance.
      *
      * @return void
      */

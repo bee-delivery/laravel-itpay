@@ -12,7 +12,7 @@ class Customer
     protected $http;
 
     /*
-     * Cria uma nova instância de Connection.
+     * Create new Connection instance.
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class Customer
     }
 
     /*
-     * Criar novo cliente.
+     * Create new customer.
      *
      * @param array $params
      * @return array

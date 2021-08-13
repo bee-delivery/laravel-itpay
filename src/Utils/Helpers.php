@@ -35,4 +35,46 @@ trait Helpers
             throw new \Exception($validator->errors()->first());
         }
     }
+
+    /*
+     * Valida dados para criação de um cashin.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateCashinData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'account' => 'required|string',
+            'amount' => 'required|numeric',
+            'description' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
+     * Valida dados para criação de um cashout.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateCashoutData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'account' => 'required|string',
+            'amount' => 'required|numeric',
+            'description' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
 }
