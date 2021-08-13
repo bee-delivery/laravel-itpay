@@ -20,4 +20,26 @@ class Customer
     {
         $this->http = new Connection();
     }
+
+    /*
+     * Criar novo cliente.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function createCustomer($params)
+    {
+        try {
+            $this->validateCreateCustomerData($params);
+
+            $response = $this->http->post('/customers', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
