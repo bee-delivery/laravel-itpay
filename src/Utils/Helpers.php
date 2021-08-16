@@ -117,6 +117,48 @@ trait Helpers
     }
 
     /*
+     * Validate data for a new credit card transaction.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreditCardTransactionData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'account' => 'required|string',
+            'amount' => 'required|string',
+            'holder_name' => 'required|string',
+            'number' => 'required|string',
+            'expiry' => 'required|string',
+            'ccv' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
+     * Validate data for a new credit card transaction refund.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreditCardTransactionRefundData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for transfer.
      *
      * @param array $data
