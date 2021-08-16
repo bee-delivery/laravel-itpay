@@ -37,6 +37,23 @@ trait Helpers
     }
 
     /*
+     * Validate data to get a customer.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetCustomerData($data)
+    {
+        $validator = Validator::make($data, [
+            'customerId' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for creating a cashin transaction.
      *
      * @param array $data
@@ -79,15 +96,19 @@ trait Helpers
     }
 
     /*
-     * Validate data to get a customer.
+     * Validate data for a new P2P transfer.
      *
      * @param array $data
      * @return void
      */
-    public function validateGetCustomerData($data)
+    public function validateTransferP2PData($data)
     {
         $validator = Validator::make($data, [
-            'customerId' => 'required|string',
+            'account_from' => 'required|string',
+            'account_to' => 'required|string',
+            'description' => 'required|string',
+            'amount' => 'required|string',
+            'external_reference' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {

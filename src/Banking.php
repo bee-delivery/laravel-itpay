@@ -12,7 +12,7 @@ class Banking
     protected $http;
 
     /*
-     * Create new Connection instance.
+     * Create a new Connection instance.
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class Banking
     }
 
     /*
-     * Create new cashin transaction.
+     * Create a new cashin transaction.
      *
      * @param array $params
      * @return array
@@ -44,7 +44,7 @@ class Banking
     }
 
     /*
-     * Create new cashout transaction.
+     * Create a new cashout transaction.
      *
      * @param array $params
      * @return array
@@ -55,6 +55,28 @@ class Banking
             $this->validateCreateCashoutData($params);
 
             $response = $this->http->post('/cashout', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
+     * Create a new P2P transfer.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function transferP2P($params)
+    {
+        try {
+            $this->validateTransferP2PData($params);
+
+            $response = $this->http->post('/transfers', $params);
 
             return $response;
         } catch (\Exception $e) {
