@@ -159,6 +159,23 @@ trait Helpers
     }
 
     /*
+     * Validate data for get a boleto.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetBoletoData($data)
+    {
+        $validator = Validator::make($data, [
+            'boletoId' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for transfer.
      *
      * @param array $data

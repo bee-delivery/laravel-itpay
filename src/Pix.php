@@ -46,7 +46,7 @@ class Pix
     /*
      * Create a new Pix refund.
      *
-     * @param int $transferId
+     * @param string $transferId
      * @return array
      */
     public function refund($transferId)
@@ -70,7 +70,7 @@ class Pix
     /*
      * Get a Pix receipt.
      *
-     * @param int $transferId
+     * @param string $transferId
      * @return array
      */
     public function getPixReceipt($transferId)

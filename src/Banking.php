@@ -130,4 +130,28 @@ class Banking
             ];
         }
     }
+
+    /*
+     * Get a boleto.
+     *
+     * @param string $boletoId
+     * @return array
+     */
+    public function getBoleto($boletoId)
+    {
+        try {
+            $this->validateGetBoletoData([
+                'boletoId' => $boletoId
+            ]);
+
+            $response = $this->http->get('/boletos/' . $id);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
