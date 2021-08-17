@@ -22,6 +22,30 @@ class Banking
     }
 
     /*
+     * Get a account by id.
+     *
+     * @param string $accountId.
+     * @return array
+     */
+    public function getAccountById($accountId)
+    {
+        try {
+            $this->validateGetAccountByIdData([
+                'accountId' => $accountId
+            ]);
+
+            $response = $this->http->get('/accounts/' . $accountId);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
      * Create a new cashin transaction.
      *
      * @param array $params

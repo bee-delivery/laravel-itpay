@@ -54,6 +54,23 @@ trait Helpers
     }
 
     /*
+     * Validate data to get account by id.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetAccountByIdData($data)
+    {
+        $validator = Validator::make($data, [
+            'accountId' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for creating a cashin transaction.
      *
      * @param array $data
