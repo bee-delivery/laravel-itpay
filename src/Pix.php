@@ -92,7 +92,7 @@ class Pix
     }
 
     /*
-     * Create new Pix validation.
+     * Create a new Pix validation.
      *
      * @param array $params
      * @return array
@@ -103,6 +103,28 @@ class Pix
             $this->validateValidatePixData($params);
 
             $response = $this->http->post('/pix/validate', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
+     * Create a new qr code.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function createQrCode($params)
+    {
+        try {
+            $this->validateCreateQrCodeData($params);
+
+            $response = $this->http->post('/qrcodes', $params);
 
             return $response;
         } catch (\Exception $e) {

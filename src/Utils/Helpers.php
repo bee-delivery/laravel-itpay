@@ -274,4 +274,32 @@ trait Helpers
             throw new \Exception($validator->errors()->first());
         }
     }
+
+    /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateQrCodeData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'account' => 'required|string',
+            'description' => 'nullable|string',
+            'amount' => 'required|string',
+            'key_type' => 'required|string',
+            'key' => 'required|string',
+            'qrcode_type' => 'nullable|string',
+            'emv' => 'nullable|string',
+            'endtoendid' => 'required|string',
+            'document' => 'required|string',
+            'name' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
 }
