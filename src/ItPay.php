@@ -5,18 +5,6 @@ namespace BeeDelivery\ItPay;
 class ItPay
 {
     /*
-     * Retorna uma nova instância de Banking.
-     *
-     * @return \BeeDelivery\ItPay\Banking
-     */
-    public function banking()
-    {
-        return new Banking();
-    }
-
-    /*
-     * Retorna uma nova instância de Customer.
-     *
      * @return \BeeDelivery\ItPay\Customer
      */
     public function customer()
@@ -25,12 +13,50 @@ class ItPay
     }
 
     /*
-     * Retorna uma nova instância de Pix.
-     *
      * @return \BeeDelivery\ItPay\Pix
      */
     public function pix()
     {
         return new Pix();
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\Boleto
+     */
+    public function boleto()
+    {
+        return new Boleto();
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\CashIn
+     */
+    public function cashin()
+    {
+        return new CashIn();
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\CashOut
+     */
+    public function cashout()
+    {
+        return new CashOut();
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\CreditCard
+     */
+    public function creditcard()
+    {
+        return new CreditCard();
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\Transfer
+     */
+    public function transfer()
+    {
+        return new Transfer();
     }
 }

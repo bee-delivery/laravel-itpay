@@ -45,7 +45,7 @@ trait Helpers
     public function validateGetCustomerData($data)
     {
         $validator = Validator::make($data, [
-            'customerId' => 'required|string',
+            'customerId' => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
@@ -62,7 +62,7 @@ trait Helpers
     public function validateGetAccountByIdData($data)
     {
         $validator = Validator::make($data, [
-            'accountId' => 'required|string',
+            'accountId' => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
@@ -79,9 +79,9 @@ trait Helpers
     public function validateCreateCashinData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|string',
-            'account' => 'required|string',
-            'amount' => 'required|string',
+            'customer' => 'required|uuid',
+            'account' => 'required|uuid',
+            'amount' => 'required|integer',
             'description' => 'required|string',
             'external_reference' => 'nullable|string'
         ]);
@@ -100,9 +100,9 @@ trait Helpers
     public function validateCreateCashoutData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|string',
-            'account' => 'required|string',
-            'amount' => 'required|string',
+            'customer' => 'required|uuid',
+            'account' => 'required|uuid',
+            'amount' => 'required|integer',
             'description' => 'required|string',
             'external_reference' => 'nullable|string'
         ]);
@@ -118,13 +118,13 @@ trait Helpers
      * @param array $data
      * @return void
      */
-    public function validateTransferP2PData($data)
+    public function validateCreateTransferP2PData($data)
     {
         $validator = Validator::make($data, [
-            'account_from' => 'required|string',
-            'account_to' => 'required|string',
+            'account_from' => 'required|uuid',
+            'account_to' => 'required|uuid',
             'description' => 'required|string',
-            'amount' => 'required|string',
+            'amount' => 'required|integer',
             'external_reference' => 'nullable|string'
         ]);
 
@@ -142,12 +142,12 @@ trait Helpers
     public function validateCreditCardTransactionData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|string',
-            'account' => 'required|string',
-            'amount' => 'required|string',
+            'customer' => 'required|uuid',
+            'account' => 'required|uuid',
+            'amount' => 'required|integer',
             'holder_name' => 'required|string',
             'number' => 'required|string',
-            'expiry' => 'required|string',
+            'expiry' => 'required|date_format:mY',
             'ccv' => 'required|string',
             'external_reference' => 'nullable|string'
         ]);
@@ -166,7 +166,7 @@ trait Helpers
     public function validateCreditCardTransactionRefundData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|string',
+            'id' => 'required|uuid',
             'external_reference' => 'nullable|string'
         ]);
 
@@ -184,7 +184,27 @@ trait Helpers
     public function validateGetBoletoData($data)
     {
         $validator = Validator::make($data, [
-            'boletoId' => 'required|string',
+            'boletoId' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
+     * Validate data for create a boleto.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateBoletoData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|uuid',
+            'account' => 'required|uuid',
+            'amount' => 'required|integer',
+            'date' => 'required|date_format:Y-m-d'
         ]);
 
         if ($validator->fails()) {
@@ -203,7 +223,7 @@ trait Helpers
         $validator = Validator::make($data, [
             'customer' => 'required|string',
             'account' => 'required|string',
-            'amount' => 'required|string',
+            'amount' => 'required|integer',
             'description' => 'nullable|string',
             'key_type' => 'required|string',
             'key' => 'required|string',
@@ -287,7 +307,7 @@ trait Helpers
             'customer' => 'required|string',
             'account' => 'required|string',
             'description' => 'nullable|string',
-            'amount' => 'required|string',
+            'amount' => 'required|integer',
             'key_type' => 'required|string',
             'key' => 'required|string',
             'qrcode_type' => 'nullable|string',

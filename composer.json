@@ -4,9 +4,13 @@
     "keywords": ["itpay", "laravel", "bank"],
     "type": "library",
     "require": {
-        "php": "^7.3"
+        "php": ">=7.1.3",
+        "guzzlehttp/guzzle": "^7.3",
+        "illuminate/support": "^8.0",
+        "ext-json": "*"
     },
     "license": "MIT",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Bee Delivery",
@@ -23,7 +27,10 @@
         "laravel": {
             "providers": [
                 "BeeDelivery\\ItPay\\ItPayServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ItPay": "BeeDelivery\\ItPay\\Facades\\ItPay"
+            }
         }
     }
 }
