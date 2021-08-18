@@ -204,7 +204,8 @@ trait Helpers
             'customer' => 'required|uuid',
             'account' => 'required|uuid',
             'amount' => 'required|integer',
-            'date' => 'required|date_format:Y-m-d'
+            'due_date' => 'required|date_format:Y-m-d',
+            'description' => 'required|string'
         ]);
 
         if ($validator->fails()) {
