@@ -27,12 +27,12 @@ class CashOut
      * @param array $params
      * @return array
      */
-    public function create($params)
+    public function create($data)
     {
         try {
-            $this->validateCreateCashoutData($params);
+            $this->validateCreateCashoutData($data);
 
-            return $this->http->post('/cashout', $params);
+            return $this->http->post('/cashout', $data);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

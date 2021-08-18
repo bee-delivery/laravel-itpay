@@ -27,12 +27,12 @@ class CashIn
      * @param array $params
      * @return array
      */
-    public function create($params)
+    public function create($data)
     {
         try {
-            $this->validateCreateCashinData($params);
+            $this->validateCreateCashinData($data);
 
-            return $this->http->post('/cashin', $params);
+            return $this->http->post('/cashin', $data);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

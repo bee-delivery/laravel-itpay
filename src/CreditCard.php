@@ -27,12 +27,12 @@ class CreditCard
      * @param array $params
      * @return array
      */
-    public function transaction($params)
+    public function transaction($data)
     {
         try {
-            $this->validateCreditCardTransactionData($params);
+            $this->validateCreditCardTransactionData($data);
 
-            $response = $this->http->post('/creditcard', $params);
+            $response = $this->http->post('/creditcard', $data);
 
             return $response;
         } catch (\Exception $e) {

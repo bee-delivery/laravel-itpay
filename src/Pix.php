@@ -27,12 +27,12 @@ class Pix
      * @param array $params
      * @return array
      */
-    public function create($params)
+    public function create($data)
     {
         try {
-            $this->validateTransferData($params);
+            $this->validateTransferData($data);
 
-            $response = $this->http->post('/pix', $params);
+            $response = $this->http->post('/pix', $data);
 
             return $response;
         } catch (\Exception $e) {
@@ -49,14 +49,14 @@ class Pix
      * @param string $transferId
      * @return array
      */
-    public function refund($transferId)
+    public function refund($id)
     {
         try {
             $this->validateRefundData([
-                'transferId' => $transferId
+                'id' => $id
             ]);
 
-            $response = $this->http->post('/pix/refund', ['id' => $transferId]);
+            $response = $this->http->post('/pix/refund', ['id' => $id]);
 
             return $response;
         } catch (\Exception $e) {
@@ -73,16 +73,14 @@ class Pix
      * @param string $transferId
      * @return array
      */
-    public function getPixReceipt($transferId)
+    public function getPixReceipt($id)
     {
         try {
             $this->validateGetPixReceiptData([
-                'transferId' => $transferId
+                'id' => $id
             ]);
 
-            $response = $this->http->get('/pix/' . $transferId . '/receipt');
-
-            return $response;
+            return $this->http->get('/pix/' . $id . '/receipt');
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
@@ -97,14 +95,12 @@ class Pix
      * @param array $params
      * @return array
      */
-    public function validatePix($params)
+    public function validatePix($data)
     {
         try {
-            $this->validateValidatePixData($params);
+            $this->validateValidatePixData($data);
 
-            $response = $this->http->post('/pix/validate', $params);
-
-            return $response;
+            return $this->http->post('/pix/validate', $data);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
@@ -124,9 +120,7 @@ class Pix
         try {
             $this->validateCreateQrCodeData($params);
 
-            $response = $this->http->post('/qrcodes', $params);
-
-            return $response;
+            return $this->http->post('/qrcodes', $params);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

@@ -27,12 +27,12 @@ class Customer
      * @param array $params
      * @return array
      */
-    public function create($params)
+    public function create($data)
     {
         try {
-            $this->validateCreateCustomerData($params);
+            $this->validateCreateCustomerData($data);
 
-            $response = $this->http->post('/customers', $params);
+            $response = $this->http->post('/customers', $data);
 
             return $response;
         } catch (\Exception $e) {
