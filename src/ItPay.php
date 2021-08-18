@@ -59,4 +59,20 @@ class ItPay
     {
         return new Transfer($accessToken);
     }
+
+    /*
+     * @return \BeeDelivery\ItPay\QrCode
+     */
+    public function qrcode($accessToken)
+    {
+        return new QrCode($accessToken);
+    }
+
+    /*
+     * @return \BeeDelivery\ItPay\Account
+     */
+    public function account($accessToken)
+    {
+        return new Account($accessToken);
+    }
 }

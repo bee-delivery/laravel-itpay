@@ -58,7 +58,7 @@ class Connection
      * @param array|null $params
      * @return array
      */
-    public function post($url, $params = null)
+    public function post($url, $params = array())
     {
         try {
             $response = Http::withHeaders([
