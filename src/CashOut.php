@@ -16,9 +16,9 @@ class CashOut
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($accessToken)
     {
-        $this->http = new Connection();
+        $this->http = new Connection($accessToken);
     }
 
     /*

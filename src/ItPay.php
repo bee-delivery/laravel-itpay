@@ -7,56 +7,56 @@ class ItPay
     /*
      * @return \BeeDelivery\ItPay\Customer
      */
-    public function customer()
+    public function customer($accessToken)
     {
-        return new Customer();
+        return new Customer($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\Pix
      */
-    public function pix()
+    public function pix($accessToken)
     {
-        return new Pix();
+        return new Pix($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\Boleto
      */
-    public function boleto()
+    public function boleto($accessToken)
     {
-        return new Boleto();
+        return new Boleto($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\CashIn
      */
-    public function cashin()
+    public function cashin($accessToken)
     {
-        return new CashIn();
+        return new CashIn($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\CashOut
      */
-    public function cashout()
+    public function cashout($accessToken)
     {
-        return new CashOut();
+        return new CashOut($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\CreditCard
      */
-    public function creditcard()
+    public function creditcard($accessToken)
     {
-        return new CreditCard();
+        return new CreditCard($accessToken);
     }
 
     /*
      * @return \BeeDelivery\ItPay\Transfer
      */
-    public function transfer()
+    public function transfer($accessToken)
     {
-        return new Transfer();
+        return new Transfer($accessToken);
     }
 }

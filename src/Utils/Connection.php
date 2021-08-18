@@ -15,9 +15,9 @@ class Connection
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($accessToken)
     {
-        $this->accessToken = config('itpay.access_token');
+        $this->accessToken = $accessToken;
         $this->baseUrl = config('itpay.base_url');
     }
 
