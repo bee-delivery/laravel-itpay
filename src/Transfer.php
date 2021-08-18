@@ -28,7 +28,7 @@ class Transfer
      * @param array $params
      * @return array
      */
-    public function createTransfer($params)
+    public function create($params)
     {
         try {
             $this->validateCreateTransferP2PData($params);
@@ -48,7 +48,7 @@ class Transfer
    * @param uuid $id
    * @return array
    */
-    public function approveTransfer($id)
+    public function approve($id)
     {
         try {
             return $this->http->post("/transfers/$id/approve");

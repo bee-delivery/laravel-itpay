@@ -27,7 +27,7 @@ class Pix
      * @param array $params
      * @return array
      */
-    public function transfer($params)
+    public function create($params)
     {
         try {
             $this->validateTransferData($params);

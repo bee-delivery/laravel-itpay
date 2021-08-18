@@ -49,16 +49,14 @@ class Customer
      * @param string $customerId
      * @return array
      */
-    public function get($customerId)
+    public function get($id)
     {
         try {
             $this->validateGetCustomerData([
-                'customerId' => $customerId
+                'id' => $id
             ]);
 
-            $response = $this->http->get('/customers/' . $customerId);
-
-            return $response;
+            return $this->http->get('/customers/' . $id);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

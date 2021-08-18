@@ -45,7 +45,7 @@ trait Helpers
     public function validateGetCustomerData($data)
     {
         $validator = Validator::make($data, [
-            'customerId' => 'required|uuid',
+            'id' => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
@@ -62,7 +62,7 @@ trait Helpers
     public function validateGetAccountByIdData($data)
     {
         $validator = Validator::make($data, [
-            'accountId' => 'required|uuid',
+            'id' => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
@@ -184,7 +184,7 @@ trait Helpers
     public function validateGetBoletoData($data)
     {
         $validator = Validator::make($data, [
-            'boletoId' => 'required|uuid',
+            'id' => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
@@ -245,7 +245,7 @@ trait Helpers
     public function validateRefundData($data)
     {
         $validator = Validator::make($data, [
-            'transferId' => 'required|string'
+            'id' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -262,7 +262,7 @@ trait Helpers
     public function validateGetPixReceiptData($data)
     {
         $validator = Validator::make($data, [
-            'transferId' => 'required|string'
+            'id' => 'required|string'
         ]);
 
         if ($validator->fails()) {

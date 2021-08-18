@@ -27,7 +27,7 @@ class CashIn
      * @param array $params
      * @return array
      */
-    public function createCashin($params)
+    public function create($params)
     {
         try {
             $this->validateCreateCashinData($params);

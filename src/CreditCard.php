@@ -27,7 +27,7 @@ class CreditCard
      * @param array $params
      * @return array
      */
-    public function creditCardTransaction($params)
+    public function transaction($params)
     {
         try {
             $this->validateCreditCardTransactionData($params);

@@ -5,7 +5,7 @@ namespace BeeDelivery\ItPay;
 use BeeDelivery\ItPay\Utils\Connection;
 use BeeDelivery\ItPay\Utils\Helpers;
 
-class Boleto
+class QrCode
 {
     use Helpers;
 
@@ -27,14 +27,14 @@ class Boleto
      * @param string $boletoId
      * @return array
      */
-    public function find($id)
+    public function get($id)
     {
         try {
-            $this->validateGetBoletoData([
+            $this->validateGetQrCodeData([
                 'id' => $id
             ]);
 
-            return $this->http->get('/boletos/' . $id);
+            return $this->http->get('/qrcodes/' . $id);
 
         } catch (\Exception $e) {
             return [
@@ -53,9 +53,9 @@ class Boleto
     public function create($data)
     {
         try {
-            $this->validateCreateBoletoData($data);
+            $this->validateCreateQrCodeData($data);
 
-            return $this->http->post('/boletos', $data);
+            return $this->http->post('/qrcodes', $data);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

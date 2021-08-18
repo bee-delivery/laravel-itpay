@@ -27,7 +27,7 @@ class CashOut
      * @param array $params
      * @return array
      */
-    public function createCashout($params)
+    public function create($params)
     {
         try {
             $this->validateCreateCashoutData($params);
