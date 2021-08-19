@@ -54,6 +54,24 @@ trait Helpers
     }
 
     /*
+ * Validate data to get a customer.
+ *
+ * @param array $data
+ * @return void
+ */
+    public function validateTokenCustomerData($data)
+    {
+        $validator = Validator::make($data, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data to get account by id.
      *
      * @param array $data

@@ -64,4 +64,24 @@ class Customer
             ];
         }
     }
+
+    /*
+     * Get a customer.
+     *
+     * @param string $customerId
+     * @return array
+     */
+    public function token($data)
+    {
+        try {
+            $this->validateTokenCustomerData($data);
+
+            return $this->http->post('/users/token', $data);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
