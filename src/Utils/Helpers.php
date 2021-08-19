@@ -237,6 +237,23 @@ trait Helpers
     }
 
     /*
+         * Validate data for refund a pix transfer.
+         *
+         * @param array $data
+         * @return void
+         */
+    public function validateConfirmData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|uuid'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for refund a pix transfer.
      *
      * @param array $data
@@ -245,7 +262,7 @@ trait Helpers
     public function validateRefundData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|string'
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {
@@ -262,7 +279,7 @@ trait Helpers
     public function validateGetPixReceiptData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|string'
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {

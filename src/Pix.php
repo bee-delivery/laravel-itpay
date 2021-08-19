@@ -44,6 +44,27 @@ class Pix
     }
 
     /*
+     * Create a new Pix transaction.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function confirm($id)
+    {
+        try {
+            $this->validateConfirmData([
+                'id' => $id
+            ]);
+            return $this->http->post("/pix/$id/confirm");
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
      * Create a new Pix refund.
      *
      * @param string $transferId
@@ -73,7 +94,7 @@ class Pix
      * @param string $transferId
      * @return array
      */
-    public function getPixReceipt($id)
+    public function receipt($id)
     {
         try {
             $this->validateGetPixReceiptData([
@@ -109,23 +130,4 @@ class Pix
         }
     }
 
-    /*
-     * Create a new qr code.
-     *
-     * @param array $params
-     * @return array
-     */
-    public function createQrCode($params)
-    {
-        try {
-            $this->validateCreateQrCodeData($params);
-
-            return $this->http->post('/qrcodes', $params);
-        } catch (\Exception $e) {
-            return [
-                'code' => $e->getCode(),
-                'response' => $e->getMessage()
-            ];
-        }
-    }
 }
