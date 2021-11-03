@@ -358,4 +358,41 @@ trait Helpers
             throw new \Exception($validator->errors()->first());
         }
     }
+    
+    /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateAccountData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'description' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+        /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetAccountBalanceData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|string',        
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+    
 }
