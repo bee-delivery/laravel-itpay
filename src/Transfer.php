@@ -59,4 +59,26 @@ class Transfer
             ];
         }
     }
+
+    /*
+     * Create bulk transfers P2P.
+     *
+     * @param array $params
+     * @return array
+     */
+    public function bulkCreate($params)
+    {
+        try {
+            foreach ($params as $key => $value) {
+                $this->validateCreateTransferP2PData($value);
+            }
+
+            return $this->http->post('/transfers/bulkStore', $params);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
