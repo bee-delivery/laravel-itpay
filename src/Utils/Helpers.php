@@ -331,6 +331,23 @@ trait Helpers
         }
     }
 
+     /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetQrCodeData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|uuid'    
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
     /*
      * Validate data for create a new qr code.
      *
@@ -344,14 +361,51 @@ trait Helpers
             'account' => 'required|string',
             'description' => 'nullable|string',
             'amount' => 'required|integer',
-            'key_type' => 'required|string',
-            'key' => 'required|string',
+            'key_type' => 'nullable|string',
+            'key' => 'nullable|string',
             'qrcode_type' => 'nullable|string',
             'emv' => 'nullable|string',
-            'endtoendid' => 'required|string',
-            'document' => 'required|string',
-            'name' => 'required|string',
+            'endtoendid' => 'nullable|string',
+            'document' => 'nullable|string',
+            'name' => 'nullable|string',
             'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+        
+    /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateAccountData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|string',
+            'description' => 'required|string',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+        /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetAccountBalanceData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|string',        
         ]);
 
         if ($validator->fails()) {
