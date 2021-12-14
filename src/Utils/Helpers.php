@@ -138,7 +138,7 @@ trait Helpers
      */
     public function validateCreateTransferP2PData($data)
     {
-        $validator = Validator::make($data, [
+        $validator = validator::make($data, [
             'account_from' => 'required|uuid',
             'account_to' => 'required|uuid',
             'description' => 'required|string',
@@ -412,4 +412,44 @@ trait Helpers
             throw new \Exception($validator->errors()->first());
         }
     }
+
+        /*
+     * Validate data for a new P2P transfer.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreateSplitTransferData($data)
+    {
+        $validator = validator::make($data, [
+            'account' => 'required|uuid',
+            'customer' => 'required|uuid',
+            'description' => 'required|string',
+            'type' => 'required|string',
+            'external_reference' => 'required|string',
+            'data' => 'required|array',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
+     * Validate data for a new credit card transaction refund.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateSplitTransferRefundData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|uuid'            
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
 }
