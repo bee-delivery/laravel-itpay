@@ -30,7 +30,11 @@ class CreditCard
     public function transaction($data)
     {
         try {
-            $this->validateCreditCardTransactionData($data);
+            if (empty($data['card_token'])) {
+                $this->validateCreditCardTransactionData($data);
+            } else {
+                $this->validateCreditCardWithTokenTransactionData($data);
+            }          
 
             $response = $this->http->post('/creditcard', $data);
 
@@ -49,19 +53,19 @@ class CreditCard
      * @param array $params
      * @return array
      */
-//    public function creditCardTransactionRefund($params)
-//    {
-//        try {
-//            $this->validateCreditCardTransactionRefundData($params);
-//
-//            $response = $this->http->post('/creditcard/refund', $params);
-//
-//            return $response;
-//        } catch (\Exception $e) {
-//            return [
-//                'code' => $e->getCode(),
-//                'response' => $e->getMessage()
-//            ];
-//        }
-//    }
+    //    public function creditCardTransactionRefund($params)
+    //    {
+    //        try {
+    //            $this->validateCreditCardTransactionRefundData($params);
+    //
+    //            $response = $this->http->post('/creditcard/refund', $params);
+    //
+    //            return $response;
+    //        } catch (\Exception $e) {
+    //            return [
+    //                'code' => $e->getCode(),
+    //                'response' => $e->getMessage()
+    //            ];
+    //        }
+    //    }
 }

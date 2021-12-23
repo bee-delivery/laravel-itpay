@@ -75,4 +75,12 @@ class ItPay
     {
         return new Account($accessToken);
     }
+
+    /*
+     * @return \BeeDelivery\ItPay\split
+     */
+    public function split($accessToken)
+    {
+        return new Split($accessToken);
+    }
 }

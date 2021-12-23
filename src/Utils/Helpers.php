@@ -175,6 +175,26 @@ trait Helpers
         }
     }
 
+        /*
+     * Validate data for a new credit card transaction.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreditCardWithTokenTransactionData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer' => 'required|max:80|uuid',
+            'account' => 'required|max:80|uuid',
+            'card_token' => 'required',
+            'amount' => 'required|integer|numeric|gt:0',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
     /*
      * Validate data for a new credit card transaction refund.
      *
@@ -406,6 +426,28 @@ trait Helpers
     {
         $validator = Validator::make($data, [
             'id' => 'required|string',        
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+            /*
+     * Validate data for update a account.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateUpdateAccountData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|string',
+            'customer' => 'nullable|string',
+            'credit_limit' => 'nullable|integer',
+            'status' => 'nullable|string',
+            'description' => 'nullable|string',
+            'external_reference' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {

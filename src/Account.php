@@ -63,4 +63,25 @@ class Account
             ];
         }
     }
+
+
+    /*
+     * get the balance for account.
+     *
+     * @param uuid $id
+     * @return array
+     */
+    public function update($id, $data)
+    {
+        try {
+            $this->validateUpdateAccountData([$id,$data]);
+
+            return $this->http->post("/accounts/$id/update", $data);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
