@@ -396,6 +396,23 @@ trait Helpers
         }
     }
 
+       /*
+     * Validate data for create a new qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateGetAccountData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
         
     /*
      * Validate data for create a new qr code.
@@ -406,7 +423,7 @@ trait Helpers
     public function validateCreateAccountData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|string',
+            'customer_id' => 'required|string',
             'description' => 'required|string',
             'external_reference' => 'nullable|string'
         ]);

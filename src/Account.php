@@ -21,6 +21,27 @@ class Account
         $this->http = new Connection($accessToken);
     }
 
+    /*
+     * Get a account.
+     *
+     * @param string $id
+     * @return array
+     */
+    public function get($id)
+    {
+        try {
+            $this->validateGetAccountData(
+              ['id' => $id]
+            );
+
+            return $this->http->get('/accounts/'.$id);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 
     /*
      * Create a boleto.
@@ -74,7 +95,7 @@ class Account
     public function update($id, $data)
     {
         try {
-            $this->validateUpdateAccountData([$id,$data]);
+            $this->validateUpdateAccountData([$id, $data]);
 
             return $this->http->post("/accounts/$id/update", $data);
         } catch (\Exception $e) {
