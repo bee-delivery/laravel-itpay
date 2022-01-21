@@ -51,7 +51,7 @@ class Split
     public function refund($id)
     {
         try {
-            $this->validateSplitTransferRefundData($id);
+            $this->validateSplitTransferRefundData(['id' => $id]);
 
             return $this->http->post("/split/$id/refund");
         } catch (\Exception $e) {

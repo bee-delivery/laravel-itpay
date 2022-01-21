@@ -459,7 +459,7 @@ trait Helpers
     public function validateUpdateAccountData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|string',
+            'id' => 'required|uuid',
             'customer' => 'nullable|string',
             'credit_limit' => 'nullable|integer',
             'status' => 'nullable|string',

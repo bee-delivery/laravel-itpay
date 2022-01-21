@@ -95,7 +95,7 @@ class Account
     public function update($id, $data)
     {
         try {
-            $this->validateUpdateAccountData([$id, $data]);
+            $this->validateUpdateAccountData($data);
 
             return $this->http->post("/accounts/$id/update", $data);
         } catch (\Exception $e) {
