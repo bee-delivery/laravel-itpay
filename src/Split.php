@@ -2,12 +2,13 @@
 
 namespace BeeDelivery\ItPay;
 
+use BeeDelivery\ItPay\Traits\Validation;
 use BeeDelivery\ItPay\Utils\Connection;
-use BeeDelivery\ItPay\Utils\Helpers;
+
 
 class Split
 {
-    use Helpers;
+    use Validation;
 
     protected $http;
 
@@ -51,7 +52,7 @@ class Split
     public function refund($id)
     {
         try {
-            $this->validateSplitTransferRefundData(['id' => $id]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->post("/split/$id/refund");
         } catch (\Exception $e) {

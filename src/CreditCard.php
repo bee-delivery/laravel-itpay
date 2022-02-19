@@ -2,12 +2,13 @@
 
 namespace BeeDelivery\ItPay;
 
+use BeeDelivery\ItPay\Traits\Validation;
 use BeeDelivery\ItPay\Utils\Connection;
-use BeeDelivery\ItPay\Utils\Helpers;
+
 
 class CreditCard
 {
-    use Helpers;
+    use Validation;
 
     protected $http;
 
