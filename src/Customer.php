@@ -2,12 +2,13 @@
 
 namespace BeeDelivery\ItPay;
 
+use BeeDelivery\ItPay\Traits\Validation;
 use BeeDelivery\ItPay\Utils\Connection;
-use BeeDelivery\ItPay\Utils\Helpers;
+
 
 class Customer
 {
-    use Helpers;
+    use Validation;
 
     protected $http;
 
@@ -52,7 +53,7 @@ class Customer
     public function get($id)
     {
         try {
-            $this->validateGetCustomerData([
+            $this->validateIdFormatUuid([
                 'id' => $id
             ]);
 

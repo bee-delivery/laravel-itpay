@@ -2,12 +2,13 @@
 
 namespace BeeDelivery\ItPay;
 
+use BeeDelivery\ItPay\Traits\Validation;
 use BeeDelivery\ItPay\Utils\Connection;
-use BeeDelivery\ItPay\Utils\Helpers;
+
 
 class Pix
 {
-    use Helpers;
+    use Validation;
 
     protected $http;
 
@@ -52,9 +53,10 @@ class Pix
     public function confirm($id)
     {
         try {
-            $this->validateConfirmData([
+            $this->validateIdFormatUuid([
                 'id' => $id
             ]);
+
             return $this->http->post("/pix/$id/confirm");
         } catch (\Exception $e) {
             return [
@@ -73,7 +75,7 @@ class Pix
     public function refund($id)
     {
         try {
-            $this->validateRefundData([
+            $this->validateIdFormatUuid([
                 'id' => $id
             ]);
 
@@ -97,7 +99,7 @@ class Pix
     public function receipt($id)
     {
         try {
-            $this->validateGetPixReceiptData([
+            $this->validateIdFormatUuid([
                 'id' => $id
             ]);
 

@@ -2,12 +2,13 @@
 
 namespace BeeDelivery\ItPay;
 
+use BeeDelivery\ItPay\Traits\Validation;
 use BeeDelivery\ItPay\Utils\Connection;
-use BeeDelivery\ItPay\Utils\Helpers;
+
 
 class QrCode
 {
-    use Helpers;
+    use Validation;
 
     protected $http;
 
@@ -30,7 +31,7 @@ class QrCode
     public function get($id)
     {
         try {
-            $this->validateGetQrCodeData([
+            $this->validateIdFormatUuid([
                 'id' => $id
             ]);
 
