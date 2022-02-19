@@ -2,6 +2,7 @@
 
 namespace BeeDelivery\ItPay\Traits;
 
+use BeeDelivery\ItPay\Utils\Helpers;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -293,7 +294,8 @@ trait Validation
      */
     public function validateGetAccountBalanceData($data)
     {
-        $validator = Validator::make($data, [
+        $result = Helpers::transformDataArrayIndexId($data);
+        $validator = Validator::make($result, [
             'id' => 'required|string',
         ]);
 
@@ -350,7 +352,8 @@ trait Validation
      */
     public function validateIdFormatUuid($data)
     {
-        $validator = Validator::make($data, [
+        $result = Helpers::transformDataArrayIndexId($data);
+        $validator = Validator::make($result, [
             'id' => 'required|uuid'
         ]);
         
