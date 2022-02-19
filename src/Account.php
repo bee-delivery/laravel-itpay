@@ -31,9 +31,7 @@ class Account
     public function get($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->get('/accounts/'.$id);
         } catch (\Exception $e) {
@@ -73,9 +71,7 @@ class Account
     public function balance($id)
     {
         try {
-            $this->validateGetAccountBalanceData([
-                'id' => $id
-            ]);
+            $this->validateGetAccountBalanceData($id);
 
             return $this->http->get("/accounts/$id/balance");
         } catch (\Exception $e) {

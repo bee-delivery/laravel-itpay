@@ -31,9 +31,7 @@ class Boleto
     public function find($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->get('/boletos/' . $id);
 

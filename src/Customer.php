@@ -53,9 +53,7 @@ class Customer
     public function get($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->get('/customers/' . $id);
         } catch (\Exception $e) {

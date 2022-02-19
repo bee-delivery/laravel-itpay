@@ -31,9 +31,7 @@ class QrCode
     public function get($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->get('/qrcodes/' . $id);
 

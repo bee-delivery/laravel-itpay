@@ -52,9 +52,7 @@ class Split
     public function refund($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->post("/split/$id/refund");
         } catch (\Exception $e) {

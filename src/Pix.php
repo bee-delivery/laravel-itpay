@@ -53,9 +53,7 @@ class Pix
     public function confirm($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->post("/pix/$id/confirm");
         } catch (\Exception $e) {
@@ -75,9 +73,7 @@ class Pix
     public function refund($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             $response = $this->http->post('/pix/refund', ['id' => $id]);
 
@@ -99,9 +95,7 @@ class Pix
     public function receipt($id)
     {
         try {
-            $this->validateIdFormatUuid([
-                'id' => $id
-            ]);
+            $this->validateIdFormatUuid($id);
 
             return $this->http->get('/pix/' . $id . '/receipt');
         } catch (\Exception $e) {
