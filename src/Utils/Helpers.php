@@ -143,7 +143,8 @@ trait Helpers
             'account_to' => 'required|uuid',
             'description' => 'required|string',
             'amount' => 'required|integer',
-            'external_reference' => 'nullable|string'
+            'external_reference' => 'nullable|string',
+            'schedule_date' => 'nullable|date'
         ]);
 
         if ($validator->fails()) {
@@ -464,7 +465,8 @@ trait Helpers
             'credit_limit' => 'nullable|integer',
             'status' => 'nullable|string',
             'description' => 'nullable|string',
-            'external_reference' => 'nullable|string'
+            'external_reference' => 'nullable|string',
+            'schedule_date' => 'nullable|date'
         ]);
 
         if ($validator->fails()) {
