@@ -84,4 +84,24 @@ class Customer
             ];
         }
     }
+
+      /*
+     * get the balance for account.
+     *
+     * @param uuid $id
+     * @return array
+     */
+    public function update($id, $data)
+    {
+        try {
+            $this->validateUpdateCustomerData([$id, $data]);
+
+            return $this->http->post("/customers/$id/update", $data);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }

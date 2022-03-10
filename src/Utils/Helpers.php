@@ -36,6 +36,36 @@ trait Helpers
         }
     }
 
+                /*
+     * Validate data for update a account.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateUpdateCustomerData($data)
+    {
+        $validator = Validator::make($data, [
+            'name' => 'nullable|string',
+            'email' => 'nullable|email',
+            'customer_type' => 'nullable|string',
+            'document' => 'nullable|string',
+            'phone_number' => 'nullable|string',
+            'address' => 'nullable|string',
+            'address_complement' => 'nullable|string',
+            'address_number' => 'nullable|string',
+            'state' => 'nullable|string',
+            'city' => 'nullable|string',
+            'zipcode' => 'nullable|string',
+            'webhook_url' => 'nullable|url',
+            'webhook_email_notification' => 'nullable|email',
+            'external_reference' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
     /*
      * Validate data to get a customer.
      *
@@ -143,8 +173,7 @@ trait Helpers
             'account_to' => 'required|uuid',
             'description' => 'required|string',
             'amount' => 'required|integer',
-            'external_reference' => 'nullable|string',
-            'schedule_date' => 'nullable|date'
+            'external_reference' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
@@ -460,13 +489,12 @@ trait Helpers
     public function validateUpdateAccountData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|uuid',
+            'id' => 'required|string',
             'customer' => 'nullable|string',
             'credit_limit' => 'nullable|integer',
             'status' => 'nullable|string',
             'description' => 'nullable|string',
-            'external_reference' => 'nullable|string',
-            'schedule_date' => 'nullable|date'
+            'external_reference' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
