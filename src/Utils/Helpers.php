@@ -398,6 +398,23 @@ trait Helpers
         }
     }
 
+         /*
+     * Validate data for receipt a qr code.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateReceiptQrCodeData($data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'required|uuid'    
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
     /*
      * Validate data for create a new qr code.
      *

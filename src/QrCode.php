@@ -35,7 +35,6 @@ class QrCode
             ]);
 
             return $this->http->get('/qrcodes/' . $id);
-
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
@@ -56,6 +55,28 @@ class QrCode
             $this->validateCreateQrCodeData($data);
 
             return $this->http->post('/qrcodes', $data);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    /*
+     * Get a boleto.
+     *
+     * @param string $boletoId
+     * @return array
+     */
+    public function receipt($id)
+    {
+        try {
+            $this->validateReceiptQrCodeData([
+                'id' => $id
+            ]);
+
+            return $this->http->get('/qrcodes/' . $id . '/receipt');
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
