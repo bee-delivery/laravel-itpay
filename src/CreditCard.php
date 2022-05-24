@@ -34,9 +34,9 @@ class CreditCard
                 $this->validateCreditCardTransactionData($data);
             } else {
                 $this->validateCreditCardWithTokenTransactionData($data);
-            }          
+            }
 
-            $response = $this->http->post('/creditcard', $data);
+            $response = $this->http->post('/creditcard/store', $data);
 
             return $response;
         } catch (\Exception $e) {

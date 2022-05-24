@@ -190,14 +190,25 @@ trait Helpers
     public function validateCreditCardTransactionData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|uuid',
-            'account' => 'required|uuid',
-            'amount' => 'required|integer',
-            'holder_name' => 'required|string',
-            'number' => 'required|string',
-            'expiry' => 'required|date_format:mY',
-            'ccv' => 'required|string',
-            'external_reference' => 'nullable|string'
+            'customer'                  => 'required|max:80|uuid',
+            'account'                   => 'required|max:80|uuid',
+            'holder_name'               => 'required',
+            'number'                    => 'required',
+            'expiry'                    => 'required',
+            'ccv'                       => 'required',
+            'amount'                    => 'required|integer|numeric|gt:0',
+            'from.address'              => 'required|string',
+            'from.address_complement'   => 'nullable|string',
+            'from.state'                => 'required|string|max:2',
+            'from.country'              => 'required|string|max:2',
+            'from.city'                 => 'required|string',
+            'from.first_name'           => 'required|string',
+            'from.last_name'            => 'required|string',
+            'from.phone_number'         => 'required|numeric',
+            'from.zipcode'              => 'required|numeric',
+            'from.email'                => 'required|email',
+            'from.document'             => 'required|numeric',
+            'external_reference'        => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
@@ -214,10 +225,11 @@ trait Helpers
     public function validateCreditCardWithTokenTransactionData($data)
     {
         $validator = Validator::make($data, [
-            'customer' => 'required|max:80|uuid',
-            'account' => 'required|max:80|uuid',
-            'card_token' => 'required',
-            'amount' => 'required|integer|numeric|gt:0',
+            'customer'              => 'required|max:80|uuid',
+            'account'               => 'required|max:80|uuid',
+            'token'                 => 'required',
+            'amount'                => 'required|integer|numeric|gt:0',
+            'external_reference'    => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
