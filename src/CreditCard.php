@@ -30,7 +30,7 @@ class CreditCard
     public function transaction($data)
     {
         try {
-            if (empty($data['card_token'])) {
+            if (empty($data['token'])) {
                 $this->validateCreditCardTransactionData($data);
             } else {
                 $this->validateCreditCardWithTokenTransactionData($data);
