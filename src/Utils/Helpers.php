@@ -15,6 +15,7 @@ trait Helpers
     public function validateCreateCustomerData($data)
     {
         $validator = Validator::make($data, [
+            'customer_id' => 'nullable|uuid',
             'name' => 'required|string',
             'email' => 'required|email',
             'customer_type' => 'required|string',
@@ -36,7 +37,7 @@ trait Helpers
         }
     }
 
-                /*
+    /*
      * Validate data for update a account.
      *
      * @param array $data
@@ -216,7 +217,7 @@ trait Helpers
         }
     }
 
-        /*
+    /*
      * Validate data for a new credit card transaction.
      *
      * @param array $data
@@ -285,7 +286,18 @@ trait Helpers
             'account' => 'required|uuid',
             'amount' => 'required|integer',
             'due_date' => 'required|date_format:Y-m-d',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'name' =>  'required|string',
+            'document' =>  'required|string',
+            'email' => 'required|string',
+            'street' => 'required|string',
+            'number' => 'required|string',
+            'neighborhood' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'state_code' => 'required|string',
+            'country' => 'required|string',
+            'zipcode' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -393,7 +405,7 @@ trait Helpers
         }
     }
 
-     /*
+    /*
      * Validate data for create a new qr code.
      *
      * @param array $data
@@ -402,7 +414,7 @@ trait Helpers
     public function validateGetQrCodeData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|uuid'    
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {
@@ -410,7 +422,7 @@ trait Helpers
         }
     }
 
-         /*
+    /*
      * Validate data for receipt a qr code.
      *
      * @param array $data
@@ -419,7 +431,7 @@ trait Helpers
     public function validateReceiptQrCodeData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|uuid'    
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {
@@ -445,8 +457,9 @@ trait Helpers
             'qrcode_type' => 'nullable|string',
             'emv' => 'nullable|string',
             'endtoendid' => 'nullable|string',
-            'document' => 'nullable|string',
-            'name' => 'nullable|string',
+            'document' => 'required|string',
+            'name' => 'required|string',
+            'email' => 'required|string',
             'external_reference' => 'nullable|string'
         ]);
 
@@ -455,7 +468,7 @@ trait Helpers
         }
     }
 
-        /*
+    /*
      * Validate data for verify a qr code.
      *
      * @param array $data
@@ -472,7 +485,7 @@ trait Helpers
         }
     }
 
-       /*
+    /*
      * Validate data for create a new qr code.
      *
      * @param array $data
@@ -489,7 +502,7 @@ trait Helpers
         }
     }
 
-        
+
     /*
      * Validate data for create a new qr code.
      *
@@ -509,7 +522,7 @@ trait Helpers
         }
     }
 
-        /*
+    /*
      * Validate data for create a new qr code.
      *
      * @param array $data
@@ -518,7 +531,7 @@ trait Helpers
     public function validateGetAccountBalanceData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|string',        
+            'id' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -526,7 +539,7 @@ trait Helpers
         }
     }
 
-            /*
+    /*
      * Validate data for update a account.
      *
      * @param array $data
@@ -548,7 +561,7 @@ trait Helpers
         }
     }
 
-        /*
+    /*
      * Validate data for a new P2P transfer.
      *
      * @param array $data
@@ -579,12 +592,11 @@ trait Helpers
     public function validateSplitTransferRefundData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|uuid'            
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
         }
     }
-
 }
