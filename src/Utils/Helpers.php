@@ -230,6 +230,9 @@ trait Helpers
             'account'               => 'required|max:80|uuid',
             'token'                 => 'required',
             'amount'                => 'required|integer|numeric|gt:0',
+            'name'                  => 'required|string',
+            'email'                 => 'required|email',
+            'document'              => 'required|numeric',
             'external_reference'    => 'nullable|string'
         ]);
 
