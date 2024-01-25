@@ -132,7 +132,8 @@ trait Helpers
             'account' => 'required|uuid',
             'amount' => 'required|integer',
             'description' => 'required|string',
-            'external_reference' => 'nullable|string'
+            'external_reference' => 'nullable|string',
+            'key_protect' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -153,7 +154,8 @@ trait Helpers
             'account' => 'required|uuid',
             'amount' => 'required|integer',
             'description' => 'required|string',
-            'external_reference' => 'nullable|string'
+            'external_reference' => 'nullable|string',
+            'key_protect' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -324,8 +326,15 @@ trait Helpers
             'key_type' => 'required|string',
             'key' => 'required|string',
             'external_reference' => 'required|string',
+            'document_validate' => 'nullable|string',
+            'institution' => 'nullable|string',
+            'institution_name' => 'nullable|string',
+            'branch' => 'nullable|string',
+            'accountNumber' => 'nullable|string',
+            'accountType' => 'nullable|string',
+            'document' => 'nullable|string',
+            'name' => 'nullable|string',            
         ]);
-
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
         }
@@ -552,7 +561,6 @@ trait Helpers
     {
         $validator = Validator::make($data, [
             'id' => 'required|string',
-            'customer' => 'nullable|string',
             'credit_limit' => 'nullable|integer',
             'status' => 'nullable|string',
             'description' => 'nullable|string',

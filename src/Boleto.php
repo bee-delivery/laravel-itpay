@@ -27,7 +27,7 @@ class Boleto
      * @param string $boletoId
      * @return array
      */
-    public function find($id)
+    public function get($id)
     {
         try {
             $this->validateGetBoletoData([
