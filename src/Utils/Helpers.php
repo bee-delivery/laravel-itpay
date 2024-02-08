@@ -176,7 +176,8 @@ trait Helpers
             'account_to' => 'required|uuid',
             'description' => 'required|string',
             'amount' => 'required|integer',
-            'external_reference' => 'nullable|string'
+            'external_reference' => 'nullable|string',
+            'schedule_date' => 'nullable|datetime',
         ]);
 
         if ($validator->fails()) {
