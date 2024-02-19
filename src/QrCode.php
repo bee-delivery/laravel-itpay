@@ -34,7 +34,7 @@ class QrCode
                 'id' => $id
             ]);
 
-            return $this->http->get('/qrcodes/' . $id);
+            return $this->http->get('/qrcodes/getById/' . $id);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
