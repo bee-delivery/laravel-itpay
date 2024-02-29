@@ -21,6 +21,28 @@ class CreditCard
         $this->http = new Connection($accessToken);
     }
 
+        /*
+     * Create a new credit card transaction.
+     *
+     * @param uuid $id
+     * @return array
+     */
+    public function get($id)
+    {
+        try {
+            $this->validateGetCreditCardTransactionData([
+                'id' => $id
+            ]);
+
+            return $this->http->get('/creditcard/' . $id);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
     /*
      * Create a new credit card transaction.
      *
