@@ -277,8 +277,7 @@ trait Helpers
     public function validateDeleteCreditCardTokenData($data)
     {
         $validator = Validator::make($data, [
-            'id'      => 'required|uuid',
-            'account' => 'required|max:80|uuid'
+            'id'      => 'required|uuid'            
         ]);
 
         if ($validator->fails()) {
