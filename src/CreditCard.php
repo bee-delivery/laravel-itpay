@@ -75,12 +75,14 @@ class CreditCard
      * @param array $params
      * @return array
      */
-    public function creditCardTransactionRefund($params)
+    public function creditCardTransactionRefund($id)
     {
         try {
-            $this->validateCreditCardTransactionRefundData($params);
+            $this->validateCreditCardTransactionRefundData([
+                'id' => $id
+            ]);
 
-            $response = $this->http->post('/creditcard/refund', $params);
+            $response = $this->http->post('/creditcard/refund/' . $id);
 
             return $response;
         } catch (\Exception $e) {
@@ -107,15 +109,14 @@ class CreditCard
         }
     }
 
-    public function deleteCreditCardToken($id, $params)
+    public function deleteCreditCardToken($id)
     {
         try {
             $this->validateDeleteCreditCardTokenData([
-                'id' => $id,
-                'account' => $params['account'] ?? ''
+                'id' => $id
             ]);
 
-            return $this->http->delete('/creditcard/tokenize/' . $id, $params);
+            return $this->http->delete('/creditcard/tokenize/' . $id);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),

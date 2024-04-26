@@ -295,8 +295,7 @@ trait Helpers
     public function validateCreditCardTransactionRefundData($data)
     {
         $validator = Validator::make($data, [
-            'id' => 'required|uuid',
-            'external_reference' => 'nullable|string'
+            'id' => 'required|uuid'
         ]);
 
         if ($validator->fails()) {
