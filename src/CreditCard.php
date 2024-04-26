@@ -116,7 +116,7 @@ class CreditCard
                 'id' => $id
             ]);
 
-            return $this->http->delete('/creditcard/tokenize/' . $id);
+            return $this->http->delete('/creditcard/tokenize/delete/' . $id);
         } catch (\Exception $e) {
             return [
                 'code' => $e->getCode(),
