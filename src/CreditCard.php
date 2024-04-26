@@ -21,7 +21,7 @@ class CreditCard
         $this->http = new Connection($accessToken);
     }
 
-        /*
+    /*
      * Create a new credit card transaction.
      *
      * @param uuid $id
@@ -75,19 +75,52 @@ class CreditCard
      * @param array $params
      * @return array
      */
-    //    public function creditCardTransactionRefund($params)
-    //    {
-    //        try {
-    //            $this->validateCreditCardTransactionRefundData($params);
-    //
-    //            $response = $this->http->post('/creditcard/refund', $params);
-    //
-    //            return $response;
-    //        } catch (\Exception $e) {
-    //            return [
-    //                'code' => $e->getCode(),
-    //                'response' => $e->getMessage()
-    //            ];
-    //        }
-    //    }
+    public function creditCardTransactionRefund($params)
+    {
+        try {
+            $this->validateCreditCardTransactionRefundData($params);
+
+            $response = $this->http->post('/creditcard/refund', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function creditCardTokenize($params)
+    {
+        try {
+            $this->validateCreditCardTokenizeData($params);
+
+            $response = $this->http->post('/creditcard/tokenize', $params);
+
+            return $response;
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function deleteCreditCardToken($id, $params)
+    {
+        try {
+            $this->validateDeleteCreditCardTokenData([
+                'id' => $id,
+                'account' => $params['account'] ?? ''
+            ]);
+
+            return $this->http->delete('/creditcard/tokenize/' . $id, $params);
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }

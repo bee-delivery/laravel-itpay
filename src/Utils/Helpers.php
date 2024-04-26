@@ -242,6 +242,51 @@ trait Helpers
     }
 
     /*
+     * Validate data for a new credit card transaction.
+     *
+     * @param array $data
+     * @return void
+     */
+    public function validateCreditCardTokenizeData($data)
+    {
+        $validator = Validator::make($data, [
+            'customer'                  => 'required|max:80|uuid',
+            'account'                   => 'required|max:80|uuid',
+            'holder_name'               => 'required',
+            'number'                    => 'required',
+            'expiry'                    => 'required',
+            'ccv'                       => 'required',
+            'from.address'              => 'required|string',
+            'from.address_complement'   => 'nullable|string',
+            'from.state'                => 'required|string|max:2',
+            'from.country'              => 'required|string|max:2',
+            'from.city'                 => 'required|string',
+            'from.first_name'           => 'required|string',
+            'from.last_name'            => 'required|string',
+            'from.phone_number'         => 'required|numeric',
+            'from.zipcode'              => 'required|numeric',
+            'from.email'                => 'required|email',
+            'from.document'             => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    public function validateDeleteCreditCardTokenData($data)
+    {
+        $validator = Validator::make($data, [
+            'id'      => 'required|uuid',
+            'account' => 'required|max:80|uuid'
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception($validator->errors()->first());
+        }
+    }
+
+    /*
      * Validate data for a new credit card transaction refund.
      *
      * @param array $data
@@ -331,7 +376,7 @@ trait Helpers
             'accountNumber' => 'nullable|string',
             'accountType' => 'nullable|string',
             'document' => 'nullable|string',
-            'name' => 'nullable|string',            
+            'name' => 'nullable|string',
         ]);
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
